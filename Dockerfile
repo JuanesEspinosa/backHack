@@ -1,5 +1,5 @@
 # Stage 1: Dependencies
-FROM node:18-alpine AS dependencies
+FROM node:20-alpine AS dependencies
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
 # Stage 2: Build
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ COPY . .
 RUN npm run build
 
 # Stage 3: Production
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
 WORKDIR /app
 
